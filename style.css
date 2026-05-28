@@ -1,0 +1,362 @@
+/* =============================================
+   바이브런 홍보 페이지 — style.css
+   =============================================
+   수정 가이드
+   - 색상 변수: :root 섹션에서 한 번에 변경
+   - 각 섹션은 주석으로 구분되어 있습니다
+   ============================================= */
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* ── 색상 & 공통 변수 ── */
+:root {
+  --bg: #f5f4f0;
+  --surface: #ffffff;
+  --surface2: #f0efeb;
+  --border: rgba(0,0,0,0.08);
+  --border-strong: rgba(0,0,0,0.14);
+  --text: #111111;
+  --text-muted: #666666;
+  --text-hint: #999999;
+  --purple: #5b4aff;
+  --purple-light: rgba(91,74,255,0.08);
+  --purple-border: rgba(91,74,255,0.3);
+  --teal: #00b48a;
+  --teal-light: rgba(0,180,138,0.08);
+  --amber: #e09000;
+  --amber-light: rgba(224,144,0,0.1);
+  --red: #e03030;
+  --red-light: rgba(224,48,48,0.08);
+  --radius: 12px;
+  --radius-sm: 8px;
+}
+
+/* ── 바디 & 레이아웃 ── */
+body {
+  font-family: 'Noto Sans KR', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  padding: 2rem 1rem 4rem;
+}
+
+.page {
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+/* ── HERO ── */
+.hero {
+  background: #0d0d0d;
+  border-radius: var(--radius);
+  padding: 2.8rem 2.2rem 2.2rem;
+  margin-bottom: 2rem;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -50px; right: -50px;
+  width: 260px; height: 260px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(91,74,255,0.18) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: -40px; left: 0;
+  width: 180px; height: 180px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0,180,138,0.14) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.tag-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 1.4rem; }
+.tag {
+  font-size: 11px; font-weight: 500;
+  padding: 4px 12px; border-radius: 20px;
+  letter-spacing: 0.5px; text-transform: uppercase;
+}
+.tag-purple { background: rgba(91,74,255,0.2);  color: #a99dff; border: 0.5px solid rgba(91,74,255,0.35); }
+.tag-teal   { background: rgba(0,180,138,0.15); color: #00c89b; border: 0.5px solid rgba(0,180,138,0.3); }
+.tag-amber  { background: rgba(239,159,39,0.15);color: #f5ab3a; border: 0.5px solid rgba(239,159,39,0.3); }
+
+.hero h1 {
+  font-size: clamp(24px, 5vw, 30px);
+  font-weight: 900;
+  line-height: 1.25;
+  color: #ffffff;
+  margin-bottom: 0.9rem;
+}
+.hero h1 em { color: #7b6dff; font-style: normal; }
+
+.hero-sub {
+  font-size: 14px;
+  color: #aaaaaa;
+  line-height: 1.75;
+}
+.hero-sub strong { color: #ffffff; }
+
+.meta-bar {
+  display: flex; flex-wrap: wrap; gap: 16px;
+  margin-top: 1.6rem;
+  padding-top: 1.2rem;
+  border-top: 0.5px solid rgba(255,255,255,0.1);
+}
+.meta-item { font-size: 12px; color: #888; }
+.meta-item strong { color: #ccc; }
+
+/* ── 공통 섹션 ── */
+.section { margin-bottom: 2.2rem; }
+
+.section-title {
+  font-size: 17px; font-weight: 700;
+  margin-bottom: 1rem;
+  color: var(--text);
+  display: flex; align-items: center; gap: 8px;
+}
+
+/* ── HOOK ── */
+.hook {
+  background: var(--surface);
+  border: 0.5px solid var(--border);
+  border-left: 3px solid var(--purple);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  padding: 1.1rem 1.3rem;
+  font-size: 14px;
+  line-height: 1.85;
+  color: var(--text);
+}
+
+/* ── 게임톤 비교 카드 ── */
+.diff-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.diff-card {
+  background: var(--surface);
+  border: 0.5px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1rem 1.1rem;
+}
+.diff-card.hl {
+  border-color: var(--purple-border);
+  background: var(--purple-light);
+}
+.diff-label {
+  font-size: 11px; font-weight: 500;
+  color: var(--text-hint);
+  text-transform: uppercase; letter-spacing: 0.4px;
+  margin-bottom: 5px;
+}
+.diff-card.hl .diff-label { color: var(--purple); }
+.diff-card-title {
+  font-size: 14px; font-weight: 700;
+  color: var(--text); margin-bottom: 5px;
+}
+.diff-card-desc {
+  font-size: 12px; color: var(--text-muted); line-height: 1.6;
+}
+
+/* ── 일정 블록 ── */
+.schedule-block {
+  background: var(--surface);
+  border: 0.5px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.2rem 1.2rem 0.6rem;
+}
+.phase-row {
+  display: flex; gap: 12px; align-items: flex-start;
+  padding: 0.75rem 0;
+  border-bottom: 0.5px solid var(--border);
+}
+.phase-row:last-child { border-bottom: none; }
+.phase-dot {
+  width: 30px; height: 30px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px; font-weight: 700; flex-shrink: 0; margin-top: 1px;
+}
+.dot-purple { background: var(--purple-light); color: var(--purple); }
+.dot-teal   { background: var(--teal-light);   color: var(--teal); }
+.dot-amber  { background: var(--amber-light);  color: var(--amber); }
+.phase-name  { font-size: 13px; font-weight: 700; color: var(--text); }
+.phase-date  { font-size: 11px; color: var(--text-hint); margin-top: 2px; }
+.phase-items { font-size: 12px; color: var(--text-muted); margin-top: 5px; line-height: 1.65; }
+
+/* ── 구분선 ── */
+hr.div { border: none; border-top: 0.5px solid var(--border); margin: 2rem 0; }
+
+/* ── 직군 카드 ── */
+.job-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+.job-card {
+  background: var(--surface);
+  border: 0.5px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1rem 1.1rem;
+}
+.job-icon  { font-size: 20px; margin-bottom: 7px; }
+.job-title { font-size: 13px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+.job-desc  { font-size: 12px; color: var(--text-muted); line-height: 1.55; }
+
+/* ── 획득 아이템 ── */
+.output-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+.output-item {
+  display: flex; gap: 10px; align-items: flex-start;
+  background: var(--surface);
+  border: 0.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 0.9rem;
+}
+.output-num {
+  width: 26px; height: 26px; border-radius: 50%;
+  background: var(--purple-light); color: var(--purple);
+  font-size: 12px; font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.output-text strong {
+  font-size: 13px; font-weight: 700; color: var(--text);
+  display: block; margin-bottom: 3px;
+}
+.output-text span { font-size: 12px; color: var(--text-muted); line-height: 1.5; }
+
+/* ── 참가 자격 ── */
+.qual-list {
+  background: var(--surface2);
+  border: 0.5px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.2rem;
+}
+.qual-item {
+  display: flex; gap: 10px; align-items: flex-start;
+  padding: 6px 0;
+  font-size: 13px; color: var(--text-muted); line-height: 1.6;
+}
+.qual-check { color: var(--teal); flex-shrink: 0; margin-top: 1px; }
+
+/* ── 가격 박스 ── */
+.pricing-box {
+  background: #0d0d0d;
+  border-radius: var(--radius);
+  padding: 2rem 2.2rem;
+}
+.price-label  { font-size: 12px; color: #888; margin-bottom: 6px; }
+.price-orig   { font-size: 14px; color: #555; text-decoration: line-through; margin-bottom: 6px; }
+.price-row    { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+.price-main   { font-size: 38px; font-weight: 900; color: #ffffff; line-height: 1; }
+.price-badge  {
+  background: rgba(224,48,48,0.18); color: #ff7070;
+  border: 0.5px solid rgba(224,48,48,0.3);
+  font-size: 12px; font-weight: 700;
+  padding: 4px 11px; border-radius: 20px;
+}
+.price-note { font-size: 12px; color: #666; margin-top: 8px; }
+.deadline-bar {
+  display: flex; align-items: center; gap: 10px;
+  background: rgba(255,255,255,0.05);
+  border-radius: var(--radius-sm);
+  padding: 10px 14px;
+  margin-top: 1.2rem;
+  font-size: 13px; color: #cccccc;
+}
+.d-dot { width: 8px; height: 8px; border-radius: 50%; background: #ff6b6b; flex-shrink: 0; }
+
+/* ── 블로그 배너 ── */
+.blog-banner-card {
+  background: #0d0d0d;
+  border-radius: var(--radius);
+  padding: 2.2rem 2rem;
+  text-align: center;
+  margin-bottom: 1.4rem;
+  position: relative;
+  overflow: hidden;
+}
+.blog-banner-card::before {
+  content: '';
+  position: absolute;
+  top: -40px; left: -40px;
+  width: 180px; height: 180px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(91,74,255,0.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+.blog-banner-card::after {
+  content: '';
+  position: absolute;
+  bottom: -30px; right: -20px;
+  width: 140px; height: 140px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0,180,138,0.12) 0%, transparent 70%);
+  pointer-events: none;
+}
+.blog-banner-title {
+  font-size: 17px; font-weight: 900;
+  color: #ffffff;
+  margin-bottom: 0.7rem;
+  position: relative;
+}
+.blog-banner-desc {
+  font-size: 13px; color: #aaaaaa;
+  line-height: 1.75; margin-bottom: 1.3rem;
+  position: relative;
+}
+.blog-banner-btn {
+  display: inline-block;
+  background: #fff; color: #4336cc;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 14px; font-weight: 700;
+  padding: 13px 32px; border-radius: 30px;
+  text-decoration: none;
+  position: relative;
+  transition: opacity 0.15s, transform 0.1s;
+}
+.blog-banner-btn:hover  { opacity: 0.92; transform: translateY(-1px); }
+.blog-banner-btn:active { transform: scale(0.98); }
+
+/* ── CTA ── */
+.cta-block {
+  background: var(--purple);
+  border-radius: var(--radius);
+  padding: 2.2rem 2rem;
+  text-align: center;
+  margin-top: 2rem;
+}
+.cta-title { font-size: 21px; font-weight: 900; color: #fff; margin-bottom: 10px; }
+.cta-sub   { font-size: 13px; color: #ccc9ff; line-height: 1.75; margin-bottom: 1.4rem; }
+.cta-btn {
+  display: inline-block;
+  background: #fff; color: #4336cc;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 14px; font-weight: 700;
+  padding: 13px 32px; border-radius: 30px;
+  border: none; cursor: pointer;
+  text-decoration: none;
+  transition: opacity 0.15s, transform 0.1s;
+}
+.cta-btn:hover  { opacity: 0.92; transform: translateY(-1px); }
+.cta-btn:active { transform: scale(0.98); }
+
+/* ── 공통 산문 ── */
+.prose {
+  font-size: 14px; line-height: 1.85;
+  color: var(--text-muted); margin-bottom: 1.6rem;
+}
+.prose strong { color: var(--text); }
+
+/* ── 반응형 ── */
+@media (max-width: 480px) {
+  .diff-grid, .job-grid, .output-grid { grid-template-columns: 1fr; }
+  .hero { padding: 2rem 1.4rem 1.8rem; }
+  .price-main { font-size: 30px; }
+}
